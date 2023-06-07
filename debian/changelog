@@ -1,0 +1,5 @@
+linux-rockchip-5.10.160 (5.10.160-1) jammy; urgency=medium
+
+  * Initial release.
+
+ -- Joshua Riek <jjriek@verizon.net>  Wed, 07 Jun 2023 11:03:10 -0400
