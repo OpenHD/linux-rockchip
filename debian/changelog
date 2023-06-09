@@ -1,3 +1,10 @@
+linux-rockchip-5.10.160 (5.10.160-2) jammy; urgency=medium
+
+  * arm64: dts: opi5plus: enable hdmirx node
+  * media: rockchip: hdmirx: silence spam on opi5plus 
+
+ -- Joshua Riek <jjriek@verizon.net>  Fri, 09 Jun 2023 09:59:49 -0400
+
 linux-rockchip-5.10.160 (5.10.160-1) jammy; urgency=medium
 
   * Initial release.
