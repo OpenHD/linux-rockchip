@@ -1,3 +1,16 @@
+linux-rockchip-5.10.160 (5.10.160-3) jammy; urgency=medium
+
+  * Enable action script for kernel recompilation on PR (#42)
+  * arm64: dts: add overlay for ap6275p
+  * arm64: dts: opi5b: enable wireless and bluetooth nodes
+  * arm64: dts: opi5: disable wireless and bluetooth nodes
+  * arm64: dts: enable hdmi ece nanopir6 and nanopct6
+  * arm64: dts: nanopct6: increase cma size to 256mb
+  * arm64: dts: nanopct6: add hdmi0 and hdmi1 to display subsystem node
+  * arm64: dts: fix cursor and display plane for nanopir6 and nanopct6
+
+ -- Joshua Riek <jjriek@verizon.net>  Wed, 14 Jun 2023 18:24:54 -0400
+
 linux-rockchip-5.10.160 (5.10.160-2) jammy; urgency=medium
 
   * arm64: dts: opi5plus: enable hdmirx node
