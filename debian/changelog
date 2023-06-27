@@ -1,3 +1,9 @@
+linux-rockchip-5.10.160 (5.10.160-5) jammy; urgency=medium
+
+  * revert "iwlwifi: pnvm: pretend to have loaded pnvm file on 5.10 bsp (#60)"
+
+ -- Joshua Riek <jjriek@verizon.net>  Tue, 27 Jun 2023 17:12:07 -0400
+
 linux-rockchip-5.10.160 (5.10.160-4) jammy; urgency=medium
 
   * iwlwifi: pnvm: pretend to have loaded pnvm file on 5.10 bsp (#60)
