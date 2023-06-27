@@ -170,7 +170,7 @@ out:
 	kfree(pnvm_data);
 	return ret;
 }
-
+#if 0
 static int iwl_pnvm_parse(struct iwl_trans *trans, const u8 *data,
 			  size_t len)
 {
@@ -227,7 +227,7 @@ static int iwl_pnvm_parse(struct iwl_trans *trans, const u8 *data,
 
 	return -ENOENT;
 }
-
+#endif
 int iwl_pnvm_load(struct iwl_trans *trans,
 		  struct iwl_notif_wait_data *notif_wait)
 {
