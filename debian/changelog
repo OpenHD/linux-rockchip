@@ -1,4 +1,4 @@
-linux-rockchip-5.10.160 (5.10.160-5) jammy; urgency=medium
+linux-rockchip-5.10.160 (5.10.160-6) jammy; urgency=medium
 
   * delete a lot of wifi-drivers)"
   * delete xfs
