@@ -36,7 +36,7 @@ jobs:
         echo "debug on"
         echo "$(cat Makefile)"
         echo "debug off"
-        sed -i '51s/.*/source "drivers\/net\/wireless\/rtl8812au\/Kconfig"/' Kconfig
+        sed -i '52s/.*/source "drivers\/net\/wireless\/rtl8812au\/Kconfig"/' Kconfig
         echo "debug on"
         echo "$(cat Kconfig)"
         echo "debug off"
