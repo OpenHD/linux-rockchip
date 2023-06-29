@@ -33,7 +33,13 @@ jobs:
         rm -Rf workdir
         cd drivers/net/wireless/
         echo "obj-$(CONFIG_RTL8812AU) += rtl8812au/" >> Makefile
+        echo "debug on"
+        echo Makefile
+        echo "debug off"
         sed -i '54s/.*/source "drivers\/net\/wireless\/rtl8812au\/Kconfig"/' Kconfig
+        echo "debug on"
+        echo Kconfig
+        echo "debug off"
         cd ../../../
 
 
