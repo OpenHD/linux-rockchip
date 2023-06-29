@@ -1,0 +1,48 @@
+name: Build Kernel for OpenHD
+
+on: [push]
+
+env:
+  # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
+  BUILD_TYPE: Release
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDSMITH_API_KEY: ${{ secrets.CLOUDSMITH_API_KEY }}
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    - name: install dependencies
+      run: |
+        sudo apt install -y build-essential gcc-aarch64-linux-gnu bison qemu-user-static qemu-system-arm qemu-efi u-boot-tools binfmt-support debootstrap flex libssl-dev bc rsync kmod cpio xz-utils fakeroot parted udev dosfstools uuid-runtime git-lfs device-tree-compiler python2 python3
+python-is-python3 fdisk bc
+
+    - name: build kernel
+      run: |
+        cd linux-rockchip
+        dpkg-buildpackage -a "$(cat debian/arch)" -d -b -nc -uc
+
+    - name: Upload to Github
+      uses: 'actions/upload-artifact@v2'
+      with:
+        name: "rock5-kernel-openhd"
+        path: |
+          *.deb
+          
+    - name: Push
+      id: push
+      uses: cloudsmith-io/action@master
+      with:
+        api-key: ${{ secrets.CLOUDSMITH_API_KEY }}
+        command: "push"
+        format: "deb"
+        owner: "openhd"
+        repo: "openhd-2-3-evo"
+        distro: "ubuntu"
+        release: "jammy"
+        republish: "true" # needed ONLY if version is not changing
+        file: "*.deb"
