@@ -4,6 +4,7 @@ PATCHLEVEL = 10
 SUBLEVEL = 160
 EXTRAVERSION =
 NAME = Dare mighty things
+EXTRA_CFLAGS += -Wno-error
 
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
