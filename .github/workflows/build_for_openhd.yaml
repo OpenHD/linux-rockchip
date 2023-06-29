@@ -23,7 +23,6 @@ jobs:
 
     - name: clone drivers into kernel
       run: |
-        cd linux-rockchip
         mkdir workdir
         cd workdir
         git clone https://github.com/OpenHD/rtl8812au
