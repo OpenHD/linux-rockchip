@@ -36,7 +36,9 @@ jobs:
         echo "CONFIG_RTL8812AU" >> ../../../arch/arm64/configs/rockchip_linux_defconfig
         echo "debug on"
         echo "$(cat Makefile)"
-        echo "$(cat ../../../arch/arm64/configs/ rockchip_linux_defconfig)"
+        echo "debug off"
+        echo "debug on config"
+        cat ../../../arch/arm64/configs/rockchip_linux_defconfig
         echo "debug off"
         sed -i '52s/.*/source "drivers\/net\/wireless\/rtl8812au\/Kconfig"/' Kconfig
         echo "debug on"
