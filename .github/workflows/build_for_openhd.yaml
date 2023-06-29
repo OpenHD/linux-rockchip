@@ -46,6 +46,7 @@ jobs:
     - name: build kernel
       run: |
         dpkg-buildpackage -a "$(cat debian/arch)" -d -b -nc -uc
+        ls -a
 
     - name: Upload to Github
       uses: 'actions/upload-artifact@v2'
