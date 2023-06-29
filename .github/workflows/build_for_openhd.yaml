@@ -18,7 +18,6 @@ jobs:
 
     - name: install dependencies
       run: |
-        ls -a
         sudo apt install -y build-essential gcc-aarch64-linux-gnu bison qemu-user-static qemu-system-arm qemu-efi u-boot-tools binfmt-support debootstrap flex libssl-dev bc rsync kmod cpio xz-utils fakeroot 
         sudo apt install -y parted udev dosfstools uuid-runtime git-lfs device-tree-compiler python2 python3 python-is-python3 fdisk bc
 
@@ -32,7 +31,7 @@ jobs:
         mv * ../../drivers/net/wireless/rtl8812au/
         cd ../.. 
         rm -Rf workdir
-        cd /drivers/net/wireless/
+        cd drivers/net/wireless/
         echo "obj-$(CONFIG_RTL8812AU) += rtl8812au/" >> Makefile
         sed -i '54s/.*/source "drivers\/net\/wireless\/rtl8812au\/Kconfig"/' Kconfig
         cd ../../../
