@@ -53,7 +53,7 @@ jobs:
       with:
         name: "rock5-kernel-openhd"
         path: |
-          ../*.deb
+          *.deb
           
     - name: Push
       id: push
@@ -67,4 +67,4 @@ jobs:
         distro: "ubuntu"
         release: "jammy"
         republish: "true" # needed ONLY if version is not changing
-        file: "../*.deb"
+        file: "*.deb"
