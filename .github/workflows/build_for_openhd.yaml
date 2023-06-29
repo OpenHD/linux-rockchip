@@ -47,6 +47,8 @@ jobs:
       run: |
         dpkg-buildpackage -a "$(cat debian/arch)" -d -b -nc -uc
         ls -a
+        cd ..
+        ls -a
 
     - name: Upload to Github
       uses: 'actions/upload-artifact@v2'
@@ -54,6 +56,7 @@ jobs:
         name: "rock5-kernel-openhd"
         path: |
           *.deb
+          ../*.deb
           
     - name: Push
       id: push
