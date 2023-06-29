@@ -33,7 +33,7 @@ jobs:
         rm -Rf workdir
         cd drivers/net/wireless/
         echo 'obj-$(CONFIG_RTL8812AU) += rtl8812au/' >> Makefile
-        sed -i '1s/^/CONFIG_RTL8812AU=y\n/' ../../../arch/arm64/configs/rockchip_linux_defconfig
+        sed -i '1s/^/CONFIG_RTL8812AU=m\n/' ../../../arch/arm64/configs/rockchip_linux_defconfig
         echo "debug on"
         echo "$(cat Makefile)"
         echo "debug off"
