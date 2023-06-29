@@ -47,7 +47,8 @@ jobs:
       run: |
         dpkg-buildpackage -a "$(cat debian/arch)" -d -b -nc -uc
         ls -a ../
-        cd ..
+        cd .. 
+        cp *.deb linux-5.10-gen-rkr4-openhd
 
     - name: Upload to Github
       uses: 'actions/upload-artifact@v2'
