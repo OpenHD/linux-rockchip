@@ -35,6 +35,11 @@ build-arch: config
 	  ARCH=arm64 \
 	  $(NJOBS)
 
+override_dh_installdirs:
+	dh_installdirs
+	cp -r debian/dev $(CURDIR)/debian/package-name/opt/
+
+
 build: build-arch
 
 binary-indep:
