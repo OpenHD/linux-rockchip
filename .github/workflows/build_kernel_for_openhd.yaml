@@ -52,6 +52,9 @@ jobs:
         ls -a ../
         cd .. 
         cp *.deb linux-rockchip/
+        mkdir header
+        mv linux-headers* header
+        cp -r header linux-rockchip/
 
     - name: Upload to Github
       uses: 'actions/upload-artifact@v2'
@@ -74,3 +77,18 @@ jobs:
         release: "jammy"
         republish: "true" # needed ONLY if version is not changing
         file: "*.deb"
+
+    - name: Push header
+      id: push
+      uses: cloudsmith-io/action@master
+      with:
+        api-key: ${{ secrets.CLOUDSMITH_API_KEY }}
+        command: "push"
+        format: "deb"
+        owner: "openhd"
+        repo: "openhd-2-3-evo"
+        distro: "ubuntu"
+        release: "jammy"
+        republish: "true" # needed ONLY if version is not changing
+        file: "header/*.deb"
+
