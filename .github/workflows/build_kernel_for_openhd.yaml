@@ -54,7 +54,7 @@ jobs:
         cd .. 
         cp *.deb linux-rockchip/
         mkdir header
-        cp linux-headers* header
+        mv linux-headers* header
         cp -r header linux-rockchip/
 
     - name: Upload to Github
