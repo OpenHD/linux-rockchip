@@ -34,7 +34,7 @@ jobs:
         mkdir -p ../../drivers/net/wireless/rtl88x2bu
         rm -Rf ../../drivers/net/wireless/rtl88x2bu/*
         mv * ../../drivers/net/wireless/rtl88x2bu/
-        cd ..../
+        cd ../../
         rm -Rf workdir
         cd drivers/net/wireless/
         echo 'obj-$(CONFIG_RTL8812AU) += rtl8812au/' >> Makefile
