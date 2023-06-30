@@ -26,7 +26,7 @@ jobs:
         mkdir workdir
         cd workdir
         git clone https://github.com/OpenHD/rtl8812au -b rockchip
-        git clone https://github.com/OpenHD/rtl88x2bu
+        git clone https://github.com/OpenHD/rtl88x2bu -b rockchip
         cd rtl8812au
         mkdir -p ../../drivers/net/wireless/rtl8812au
         mv * ../../drivers/net/wireless/rtl8812au/
