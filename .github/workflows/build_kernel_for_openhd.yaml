@@ -52,18 +52,14 @@ jobs:
         dpkg-buildpackage -a "$(cat debian/arch)" -d -b -nc -uc
         ls -a ../
         cd .. 
-        cp *.deb linux-rockchip/
-        mkdir header
-        mv linux-headers* header
-        cp -r header linux-rockchip/
-
+  
     - name: Upload to Github
       uses: 'actions/upload-artifact@v2'
       with:
         name: "rock5-kernel-openhd"
         path: |
-          *.deb
-          linux-rockchip/*.deb
+          linux-headers*.deb
+          linux-image*.deb
           
     - name: Push
       id: push
@@ -77,7 +73,7 @@ jobs:
         distro: "ubuntu"
         release: "jammy"
         republish: "true" # needed ONLY if version is not changing
-        file: "*.deb"
+        file: "linux-image*.deb"
 
     - name: Push header
       id: push_headers
@@ -91,5 +87,5 @@ jobs:
         distro: "ubuntu"
         release: "jammy"
         republish: "true" # needed ONLY if version is not changing
-        file: "header/*.deb"
+        file: "linux-headers*.deb"
 
