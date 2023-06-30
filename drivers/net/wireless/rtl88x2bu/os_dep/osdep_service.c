@@ -17,6 +17,11 @@
 #define _OSDEP_SERVICE_C_
 
 #include <drv_types.h>
+#include <linux/kthread.h>
+
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0))
+#define kthread_complete_and_exit(comp, code) complete_and_exit(comp, code)
+#endif
 
 #define RT_TAG	'1178'
 
@@ -1204,7 +1209,7 @@ void rtw_init_timer(_timer *ptimer, void *padapter, void *pfunc, void *ctx)
 	_adapter *adapter = (_adapter *)padapter;
 
 #ifdef PLATFORM_LINUX
-	_init_timer(ptimer, adapter ? adapter->pnetdev : NULL, pfunc, ctx);
+	_init_timer(ptimer, adapter->pnetdev, pfunc, ctx);
 #endif
 #ifdef PLATFORM_FREEBSD
 	_init_timer(ptimer, adapter->pifp, pfunc, ctx);
@@ -1312,11 +1317,7 @@ u32 _rtw_down_sema(_sema *sema)
 inline void thread_exit(_completion *comp)
 {
 #ifdef PLATFORM_LINUX
-#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 17, 0))
 	kthread_complete_and_exit(comp, 0);
-#else
-	complete_and_exit(comp, 0);
-#endif
 #endif
 
 #ifdef PLATFORM_FREEBSD
@@ -2514,7 +2515,7 @@ static int isFileReadable(const char *path, u32 *sz)
 	else {
 		#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0))
 		oldfs = get_fs();
-		#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0) || defined(RHEL8))
+		#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0))
 		set_fs(KERNEL_DS);
 		#else
 		set_fs(get_ds());
@@ -2562,7 +2563,7 @@ static int retriveFromFile(const char *path, u8 *buf, u32 sz)
 
 			#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0))
 			oldfs = get_fs();
-			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0) || defined(RHEL8))
+			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0))
 			set_fs(KERNEL_DS);
 			#else
 			set_fs(get_ds());
@@ -2609,7 +2610,7 @@ static int storeToFile(const char *path, u8 *buf, u32 sz)
 
 			#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 10, 0))
 			oldfs = get_fs();
-			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0) || defined(RHEL8))
+			#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 1, 0))
 			set_fs(KERNEL_DS);
 			#else
 			set_fs(get_ds());

@@ -3835,11 +3835,11 @@ int validate_mp_recv_frame(_adapter *adapter, union recv_frame *precv_frame)
 			for (i = 0; i < precv_frame->u.hdr.len; i = i + 8)
 				RTW_INFO("%02X:%02X:%02X:%02X:%02X:%02X:%02X:%02X:\n", *(ptr + i),
 					*(ptr + i + 1), *(ptr + i + 2) , *(ptr + i + 3) , *(ptr + i + 4), *(ptr + i + 5), *(ptr + i + 6), *(ptr + i + 7));
-				RTW_INFO("#############################\n");
-				_rtw_memset(pmppriv->mplink_buf, '\0' , sizeof(pmppriv->mplink_buf));
-				_rtw_memcpy(pmppriv->mplink_buf, ptr, precv_frame->u.hdr.len);
-				pmppriv->mplink_rx_len = precv_frame->u.hdr.len;
-				pmppriv->mplink_brx =_TRUE;
+			RTW_INFO("#############################\n");
+			_rtw_memset(pmppriv->mplink_buf, '\0' , sizeof(pmppriv->mplink_buf));
+			_rtw_memcpy(pmppriv->mplink_buf, ptr, precv_frame->u.hdr.len);
+			pmppriv->mplink_rx_len = precv_frame->u.hdr.len;
+			pmppriv->mplink_brx =_TRUE;
 		}
 	}
 	if (pmppriv->bloopback) {
@@ -4068,9 +4068,8 @@ int recv_frame_monitor(_adapter *padapter, union recv_frame *rframe)
 
 	/* read skb information from recv frame */
 	pskb = rframe->u.hdr.pkt;
-	pskb->head = rframe->u.hdr.rx_head;
-	pskb->data = rframe->u.hdr.rx_data;
 	pskb->len = rframe->u.hdr.len;
+	pskb->data = rframe->u.hdr.rx_data;
 	skb_set_tail_pointer(pskb, rframe->u.hdr.len);
 
 	if (ndev->type == ARPHRD_IEEE80211_RADIOTAP) {
@@ -4754,10 +4753,8 @@ u8 adapter_allow_bmc_data_rx(_adapter *adapter)
 	if (MLME_IS_AP(adapter))
 		return 0;
 
-#if !defined(RHEL8)
 	if (rtw_linked_check(adapter) == _FALSE)
 		return 0;
-#endif
 
 	return 1;
 }

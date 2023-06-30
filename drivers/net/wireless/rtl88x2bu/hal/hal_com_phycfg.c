@@ -2235,6 +2235,11 @@ phy_set_tx_power_index_by_rate_section(
 		powerIndex = phy_get_tx_power_index_ex(pAdapter, RFPath
 			, rs, rates_by_sections[rs].rates[i], bw, band, Channel, 0);
 #endif
+		// Consti10
+		// Really really dirty - 52 is a sane but increadibly high value. lets see what happens when
+		// we "do something similar" as rtl8812au ;)
+	    RTW_INFO("OpenHD: applying fixed power index 50, original: %d\n",(int)powerIndex);
+		powerIndex=50;
 		PHY_SetTxPowerIndex(pAdapter, powerIndex, RFPath, rates_by_sections[rs].rates[i]);
 	}
 
