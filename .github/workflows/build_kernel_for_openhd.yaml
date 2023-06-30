@@ -26,23 +26,24 @@ jobs:
         mkdir workdir
         cd workdir
         git clone https://github.com/OpenHD/rtl8812au -b rockchip
-        git clone https://github.com/OpenHD/rtl88x2bu -b rockchip
         cd rtl8812au
         mkdir -p ../../drivers/net/wireless/rtl8812au
         mv * ../../drivers/net/wireless/rtl8812au/
-        cd ../rtl88x2bu
-        mkdir -p ../../drivers/net/wireless/rtl88x2bu
-        rm -Rf ../../drivers/net/wireless/rtl88x2bu/*
-        mv * ../../drivers/net/wireless/rtl88x2bu/
-        cd ../../
+        cd ../.. 
         rm -Rf workdir
         cd drivers/net/wireless/
         echo 'obj-$(CONFIG_RTL8812AU) += rtl8812au/' >> Makefile
-        echo 'obj-$(CONFIG_RTL8812AU) += rtl88x2bu/' >> Makefile
-        sed -i '1s/^/CONFIG_RTL882AU=m\n/' ../../../arch/arm64/configs/rockchip_linux_defconfig
-        sed -i '1s/^/CONFIG_RTL88XBU=m\n/' ../../../arch/arm64/configs/rockchip_linux_defconfig
+        sed -i '1s/^/CONFIG_RTL8812AU=m\n/' ../../../arch/arm64/configs/rockchip_linux_defconfig
+        echo "debug on"
+        echo "$(cat Makefile)"
+        echo "debug off"
+        echo "debug on config"
+        cat ../../../arch/arm64/configs/rockchip_linux_defconfig
+        echo "debug off"
         sed -i '52s/.*/source "drivers\/net\/wireless\/rtl8812au\/Kconfig"/' Kconfig
-        sed -i '53s/.*/source "drivers\/net\/wireless\/rtl88x2bu\/Kconfig"/' Kconfig
+        echo "debug on"
+        echo "$(cat Kconfig)"
+        echo "debug off"
         cd ../../../
 
 
