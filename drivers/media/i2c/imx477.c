@@ -21,6 +21,9 @@
 #include <media/v4l2-fwnode.h>
 #include <media/v4l2-mediabus.h>
 
+#define MEDIA_BUS_FMT_SENSOR_DATA	0x7002
+
+
 static int dpc_enable = 1;
 module_param(dpc_enable, int, 0644);
 MODULE_PARM_DESC(dpc_enable, "Enable on-sensor DPC");
