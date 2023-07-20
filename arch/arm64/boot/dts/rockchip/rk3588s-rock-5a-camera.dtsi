@@ -5,7 +5,7 @@
  */
 
 / {
-	compatible = "radxa,rock-5b", "rockchip,rk3588";
+	compatible = "radxa,rock-5a", "rockchip,rk3588";
 
 	camera_pwdn_gpio: camera-pwdn-gpio {
 		status = "disabled";
@@ -14,7 +14,7 @@
 		regulator-always-on;
 		regulator-boot-on;
 		enable-active-high;
-		gpio = <&gpio1 RK_PB0 GPIO_ACTIVE_HIGH>;
+		gpio = <&gpio1 RK_PD3 GPIO_ACTIVE_HIGH>;
 		pinctrl-names = "default";
 		pinctrl-0 = <&cam_pwdn_gpio>;
 	};
@@ -35,13 +35,13 @@
 		status = "disabled";
 		compatible = "sony,imx415";
 		reg = <0x1a>;
-		clocks = <&cru CLK_MIPI_CAMARAOUT_M3>;
+		clocks = <&cru CLK_MIPI_CAMARAOUT_M2>;
 		clock-names = "xvclk";
 		pinctrl-names = "default";
-		pinctrl-0 = <&mipim0_camera3_clk>;
+		pinctrl-0 = <&mipim0_camera2_clk>;
 		power-domains = <&power RK3588_PD_VI>;
-		pwdn-gpios = <&gpio1 RK_PB0 GPIO_ACTIVE_HIGH>;
-		reset-gpios = <&gpio4 RK_PA0 GPIO_ACTIVE_LOW>;
+		pwdn-gpios = <&gpio1 RK_PD3 GPIO_ACTIVE_HIGH>;
+		reset-gpios = <&gpio4 RK_PD2 GPIO_ACTIVE_LOW>;
 		rockchip,camera-module-index = <0>;
 		rockchip,camera-module-facing = "back";
 		rockchip,camera-module-name = "RADXA-CAMERA-4K";
@@ -88,7 +88,7 @@
 		rockchip,camera-module-name = "arducam-pivariety";
 		rockchip,camera-module-lens-name = "default";
 		// power-domains = <&power RK3588_PD_VI>;
-		// pwdn-gpios = <&gpio1 RK_PB0 GPIO_ACTIVE_HIGH>;
+		// pwdn-gpios = <&gpio1 RK_PD3 GPIO_ACTIVE_HIGH>;
 
 		port {
 			pivariety_out0: endpoint {
@@ -111,7 +111,7 @@
 		rockchip,camera-module-name = "arducam-imx477";
 		rockchip,camera-module-lens-name = "default";
 		// power-domains = <&power RK3588_PD_VI>;
-		// pwdn-gpios = <&gpio1 RK_PB0 GPIO_ACTIVE_HIGH>;
+		// pwdn-gpios = <&gpio1 RK_PD3 GPIO_ACTIVE_HIGH>;
 
 		port {
 			imx477_out0: endpoint {
@@ -249,7 +249,7 @@
 &pinctrl {
 	camera {
 		cam_pwdn_gpio: cam-pwdn-gpio {
-			rockchip,pins = <1 RK_PB0 RK_FUNC_GPIO &pcfg_pull_up>;
+			rockchip,pins = <1 RK_PD3 RK_FUNC_GPIO &pcfg_pull_up>;
 		};
 	};
 };
